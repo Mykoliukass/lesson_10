@@ -54,7 +54,6 @@
 # print(add_ending([5, "Septyniolika", 984, "kintamasis"]))
 
 # from typing import Union
-
 # def pick_your_type(number:int) -> Union[str,bool]:
 #     if number >=500:
 #         return "You rule bro, thats a high number!"
@@ -64,15 +63,83 @@
 
 # Create a mini python program which would take two numbers as an input and would return their sum, subtraction, division, multiplication.
 # It was told, that function should only do ONE thing, so:
-a = float(input("Please provide me with your first number: "))
-b = float(input("Please provide me with another number: "))
-def adding_nums(a:float,b:float) -> str:
-    return "sum is equal to: "+ str(a+b)
-def substracting_nums(a:float,b:float) -> str:
-    return "Difference is equal to: "+ str(a-b)
-def dividing_nums(a:float,b:float) -> str:
-    return "Division is equal to: " +str(a/b)
-def multiplying_nums(a:float,b:float) -> str:
-    return "Multiplication is equal to: " +str(a*b)
-list_of_functions =[adding_nums, substracting_nums, dividing_nums, multiplying_nums]
-print([function(a,b) for function in list_of_functions])
+# a = float(input("Please provide me with your first number: "))
+# b = float(input("Please provide me with another number: "))
+# def adding_nums(a:float,b:float) -> str:
+#     return "sum is equal to: "+ str(a+b)
+# def substracting_nums(a:float,b:float) -> str:
+#     return "Difference is equal to: "+ str(a-b)
+# def dividing_nums(a:float,b:float) -> str:
+#     return "Division is equal to: " +str(a/b)
+# def multiplying_nums(a:float,b:float) -> str:
+#     return "Multiplication is equal to: " +str(a*b)
+# list_of_functions =[adding_nums, substracting_nums, dividing_nums, multiplying_nums]
+# # print([function(a,b) for function in list_of_functions])
+
+# from type import Union, Optional, List, Dict
+
+# def union_type(a: Union[int,float]) -> Union[int,str]:
+#     if type(a) == "int"
+#         return a
+#     else:
+#         return str(a)
+
+# def optionaly_type(a: Union[int,float]) -> Optional(int):
+#     if type(a) == "int"
+#         return a
+#     return none
+
+# new_list:List[Union[str,int,float]] = [154, "Survey", 6558, 24, "Silke", 5.1354]
+# my_dictionary:Dict[str, Optional(Union[int,float])] = {"14": 144, "75": 74447, "45":45.45, "B":1.23, "C": None}
+
+# Create a function that returns only strings with unique characters.
+# from typing import Union
+# def return_one_string_with_unique_char(string_to_check: str) ->bool:
+#         return any(char in "!@#$%^&*(),-_=+[]{}|:'\".<>?/" for char in string_to_check)
+# def return_strings_with_unique_chars(strings_to_check: Union[list, str]) -> Union[list, str]:
+#     if type(strings_to_check) == list:
+#         return [string for string in strings_to_check if return_one_string_with_unique_char(string)]
+#     else:
+#             return strings_to_check if return_one_string_with_unique_char(strings_to_check) else None
+# print(return_strings_with_unique_chars(["THis is a long string*", "And this string is in a list", "Wh*re on*y s*me stri[ngs", "have,spec,chars"]))
+
+
+# from typing import Union, List
+
+# def return_one_string_with_unique_char(string_to_check: str) -> bool:
+#     return any(char in "!@#$%^&*(),-_=+[]{}|:'\".<>?/" for char in string_to_check)
+# def return_strings_with_unique_chars(strings_to_check: Union[List[str], str]) -> List[str]:
+#     return [one_string for one_string in (strings_to_check if type(strings_to_check) == list else [strings_to_check]) if return_one_string_with_unique_char(one_string)]
+# print(return_strings_with_unique_chars(["THis is a long string*", "And this string is in a list", "Wh*re on*y s*me stri[ngs", "have,spec,chars"]))
+
+# Task nr.1: 
+# Create a mini program that takes 10 random numbers in one input ("1,2,5 76,89 ...etc")
+# Write functions to: calculate their sum, multiplication of highest and lowest numbers
+# and the function which makes a new string where numbers are positioned from highest to lowest.
+
+
+# Task nr.2:
+# Create a program , which takes no less than 3 differnt sentences. The input should have all 
+# error checking in mind. The program then should create a dictionary of whith key values 
+# corresponding to words `long` (more than 9 letters in a words) `medium`(7 letters)
+# `short` (5 words). Then the pgrogram should create a new sentences (if 3 provided, 3 new sentences should be returned) 
+# with following rules attached:
+# All sentences should have same (or less) words amount as entered one;
+# The most frequent letter from the sentence (from input) should be dominated in a new sentence as well.
+
+# The program should return new sentences with statitstics of ratio how many words was used from all sections 
+# NECESSARY Short < 35% , medium: 25% , long 10%, words cannot repeat IN THE SAME sentence. 
+# (as for exmpale: long 25%,medium 45%, short 30%)
+# Trys ilgi sakiniai, turi būti su taškais būtinai and all.
+from typing import Union
+
+three_or_more_sentences = ""
+def check_sentences(string_to_check:str) -> bool:
+    if string_to_check.count(".") < 3 or (string_to_check.count(".") == 3 and string_to_check[0]=="."):
+        return True
+    else:
+        return string_to_check if string_to_check[0]!="." else string_to_check[1:]
+While True:
+    three_or_more_sentences = input("Please provide me with three or more sentences. They should all end with a point '.': ")
+    check_sentences(three_or_more_sentences)
+print(three_or_more_sentences)
