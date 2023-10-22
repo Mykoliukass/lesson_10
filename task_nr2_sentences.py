@@ -11,16 +11,37 @@
 # NECESSARY Short < 35% , medium: 25% , long 10%, words cannot repeat IN THE SAME sentence. 
 # (as for exmpale: long 25%,medium 45%, short 30%)
 # Trys ilgi sakiniai, turi būti su taškais būtinai and all.
-from typing import Union
+from typing import Union, List, Dict
 
-three_or_more_sentences = ""
-def check_sentences(string_to_check:str) -> bool:
-    if string_to_check.count(".") < 3 or (string_to_check.count(".") == 3 and string_to_check[0]=="."):
-        return True
-    else:
-        return string_to_check if string_to_check[0]!="." else string_to_check[1:]
-def get_sentences() -> str:
-    While True:
-        three_or_more_sentences = input("Please provide me with three or more sentences. They should all end with a point '.': ")
-        check_sentences(three_or_more_sentences)
-print(three_or_more_sentences)
+def check_sentences(input_text: str) -> Union[bool, List[str]]:
+    sentences = [sentence.strip() for sentence in input_text.split('.') if sentence.strip()]
+    if len(sentences) < 3:
+        return False
+    elif any(char in "!@#$%^&*(),-_=+[]{}|:'\"<>?/" for char in input_text):
+        return False
+    return sentences
+
+def get_sentences() -> List[str]:
+    while True:
+        user_input = input("Please provide me with three or more sentences. They should all end with a period '.': ")
+        result = check_sentences(user_input)
+        if result:
+            return result
+        else:
+            print("Invalid input. Please provide at least three different sentences. Make sure there are no other special symbols besides the dot.")
+
+def words_to_dictionary_by_length(list_of_sentences: List[str]) -> Dict[str, List[str]]:
+    dictionary_by_length = {'short': [], 'medium': [], 'long': []}
+    clean_words = [remove_end_dot(word) for sentence in list_of_sentences for word in sentence.split()]
+    [dictionary_by_length['short'].append(clean_word) for clean_word in clean_words if len(clean_word) < 5]
+    [dictionary_by_length['long'].append(clean_word) for clean_word in clean_words if len(clean_word) >= 8]
+    [dictionary_by_length['medium'].append(clean_word) for clean_word in clean_words if 5 <= len(clean_word) < 8]
+    return dictionary_by_length
+
+def remove_end_dot(word: str) -> str:
+    return word.replace(".", "")
+
+sentences = get_sentences()
+print("You entered:", sentences)
+print("Your dictionary:", words_to_dictionary_by_length(sentences))
+
